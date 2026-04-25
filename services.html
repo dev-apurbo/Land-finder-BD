@@ -1,73 +1,650 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Services | ABC Construction</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services | Land Finder BD</title>
+  <meta name="description" content="Explore Land Finder BD's full range of real-estate and land development services — plot selling, legal documentation, site visits, and more across Rajshahi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Page-level font override ── */
+    body { font-family: 'Inter', Arial, sans-serif; }
+
+    /* ══════════════ SERVICES HERO ══════════════ */
+    .svc-hero {
+      position: relative;
+      min-height: 420px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #0f1720;
+    }
+    .svc-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/project4.jpg') center/cover no-repeat;
+      opacity: 0.22;
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+    .svc-hero:hover .svc-hero-bg { transform: scale(1.08); }
+    .svc-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15,23,32,0.88) 0%, rgba(37,55,72,0.75) 100%);
+    }
+    .svc-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      padding: 60px 20px;
+      max-width: 720px;
+    }
+    .svc-hero-badge {
+      display: inline-block;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.45);
+      color: #f59e0b;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      animation: fadeInDown 0.8s ease both;
+    }
+    .svc-hero-content h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin: 0 0 18px;
+      animation: fadeInDown 1s ease 0.1s both;
+    }
+    .svc-hero-content h1 span { color: #f59e0b; }
+    .svc-hero-content p {
+      font-size: 1.1rem;
+      color: #c9d1da;
+      line-height: 1.7;
+      margin: 0 0 32px;
+      animation: fadeInUp 1s ease 0.2s both;
+    }
+    .svc-hero-content .btn-group {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 1s ease 0.35s both;
+    }
+    .btn-primary {
+      background: #f59e0b;
+      color: #0f1720;
+      font-weight: 700;
+      padding: 13px 28px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+      font-size: 0.97rem;
+    }
+    .btn-primary:hover { background: #d97706; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.45);
+      font-weight: 600;
+      padding: 12px 26px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s;
+      font-size: 0.97rem;
+    }
+    .btn-outline:hover { border-color: #f59e0b; background: rgba(245,158,11,0.1); transform: translateY(-2px); }
+
+    /* ══════════════ STATS STRIP ══════════════ */
+    .svc-stats {
+      background: #1a2535;
+      padding: 28px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      flex-wrap: wrap;
+    }
+    .stat-item {
+      text-align: center;
+      padding: 14px 40px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      color: #fff;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-item strong {
+      display: block;
+      font-size: 2rem;
+      font-weight: 800;
+      color: #f59e0b;
+      line-height: 1;
+    }
+    .stat-item span { font-size: 0.82rem; color: #8a9bb0; margin-top: 4px; display: block; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    /* ══════════════ MAIN SERVICES GRID ══════════════ */
+    .svc-section {
+      padding: 80px 20px;
+      background: #f8fafc;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 56px;
+    }
+    .section-label {
+      display: inline-block;
+      color: #f59e0b;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 800;
+      color: #0f1720;
+      margin: 0 0 14px;
+      line-height: 1.2;
+    }
+    .section-header p {
+      color: #5a6a7a;
+      font-size: 1rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+      gap: 26px;
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+    .svc-card {
+      background: #fff;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(15,23,32,0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(15,23,32,0.05);
+      position: relative;
+    }
+    .svc-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 16px 40px rgba(15,23,32,0.13);
+    }
+    .svc-card-img-wrap {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+    .svc-card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .svc-card:hover .svc-card-img-wrap img { transform: scale(1.07); }
+    .svc-card-tag {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: #f59e0b;
+      color: #0f1720;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .svc-icon-bubble {
+      position: absolute;
+      bottom: -22px;
+      right: 20px;
+      width: 46px;
+      height: 46px;
+      background: #f59e0b;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      box-shadow: 0 4px 12px rgba(245,158,11,0.4);
+      border: 3px solid #fff;
+    }
+    .svc-card-body {
+      padding: 36px 22px 26px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .svc-card-body h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #0f1720;
+      margin: 0 0 10px;
+    }
+    .svc-card-body p {
+      color: #5a6a7a;
+      font-size: 0.93rem;
+      line-height: 1.65;
+      margin: 0 0 18px;
+      flex: 1;
+    }
+    .svc-card-link {
+      color: #f59e0b;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: gap 0.2s;
+    }
+    .svc-card-link:hover { gap: 10px; }
+    .svc-card-link::after { content: '→'; }
+
+    /* ══════════════ FEATURED SERVICE ══════════════ */
+    .featured-svc {
+      background: #0f1720;
+      padding: 80px 20px;
+    }
+    .featured-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .featured-img-wrap {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    }
+    .featured-img-wrap img {
+      width: 100%;
+      height: 380px;
+      object-fit: cover;
+      display: block;
+    }
+    .featured-img-badge {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: #f59e0b;
+      color: #0f1720;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 8px 16px;
+      border-radius: 6px;
+    }
+    .featured-text { color: #e2e8f0; }
+    .featured-text .section-label { color: #f59e0b; }
+    .featured-text h2 {
+      font-size: clamp(1.6rem, 3vw, 2.3rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 16px;
+      line-height: 1.2;
+    }
+    .featured-text p {
+      color: #8a9bb0;
+      font-size: 0.97rem;
+      line-height: 1.75;
+      margin: 0 0 28px;
+    }
+    .feature-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: #c9d1da;
+      font-size: 0.93rem;
+      line-height: 1.5;
+    }
+    .feature-list li::before {
+      content: '✓';
+      background: rgba(245,158,11,0.15);
+      color: #f59e0b;
+      border: 1px solid rgba(245,158,11,0.3);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ══════════════ HOW IT WORKS ══════════════ */
+    .how-section {
+      padding: 80px 20px;
+      background: #fff;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 34px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+      opacity: 0.25;
+      z-index: 0;
+    }
+    .step-card {
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #0f1720;
+      font-size: 1.4rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 6px 20px rgba(245,158,11,0.35);
+      transition: transform 0.3s;
+    }
+    .step-card:hover .step-num { transform: scale(1.1) rotate(-5deg); }
+    .step-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f1720;
+      margin: 0 0 8px;
+    }
+    .step-card p {
+      color: #6b7a8d;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ══════════════ CTA BAND ══════════════ */
+    .svc-cta {
+      background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      padding: 64px 20px;
+      text-align: center;
+    }
+    .svc-cta h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 800;
+      color: #0f1720;
+      margin: 0 0 14px;
+    }
+    .svc-cta p {
+      color: rgba(15,23,32,0.75);
+      font-size: 1rem;
+      margin: 0 0 30px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .btn-dark {
+      background: #0f1720;
+      color: #fff;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s;
+      font-size: 0.97rem;
+      display: inline-block;
+    }
+    .btn-dark:hover { background: #1a2535; transform: translateY(-2px); }
+
+    /* ══════════════ RESPONSIVE ══════════════ */
+    @media (max-width: 768px) {
+      .svc-stats { gap: 0; }
+      .stat-item { padding: 12px 20px; border-right: none; border-bottom: 1px solid rgba(255,255,255,0.08); width: 50%; box-sizing: border-box; }
+      .stat-item:nth-child(even) { border-left: 1px solid rgba(255,255,255,0.08); }
+      .featured-inner { grid-template-columns: 1fr; gap: 32px; }
+      .featured-img-wrap img { height: 250px; }
+      .steps-grid::before { display: none; }
+      .svc-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .stat-item { width: 100%; border-left: none !important; }
+      .svc-hero-content { padding: 40px 16px; }
+    }
+  </style>
 </head>
 <body>
+
+<!-- ══ HEADER ══ -->
 <header>
-<h2>ABC Construction</h2>
-<button class="nav-toggle" onclick="toggleNav()">☰</button>
-<nav id="nav-menu">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="services.html">Services</a>
-<a href="projects.html">Projects</a>
-<a href="contact.html">Contact</a>
-</nav>
+  <h2>Land Finder BD</h2>
+  <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html" style="color:#f59e0b;">Services</a>
+    <a href="projects.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
 </header>
-<section>
-<h2>Our Services</h2>
-<ul>
-<li>Residential Construction</li>
-<li>Commercial Buildings</li>
-<li>Renovation & Remodeling</li>
-<li>Interior Design</li>
-</ul>
+
+<!-- ══ HERO ══ -->
+<section class="svc-hero" aria-label="Services hero">
+  <div class="svc-hero-bg"></div>
+  <div class="svc-hero-overlay"></div>
+  <div class="svc-hero-content">
+    <div class="svc-hero-badge">What We Offer</div>
+    <h1>Real-Estate Services <span>Built for You</span></h1>
+    <p>From finding the perfect plot to handling all legal paperwork — Land Finder BD is your trusted partner across every step of the property journey in Rajshahi.</p>
+    <div class="btn-group">
+      <a href="contact.html" class="btn-primary" id="svc-hero-cta">Get Free Consultation</a>
+      <a href="projects.html" class="btn-outline" id="svc-hero-projects">View Our Projects</a>
+    </div>
+  </div>
 </section>
-<section class="services">
-	<div class="services-hero">
-		<h2>Our Services</h2>
-		<p class="lead">From foundations to finishes — we handle every phase with precision and care.</p>
-	</div>
 
-	<div class="services-grid">
-		<div class="service-card">
-			<a href="services.html#residential"><img src="images/project1.jpg" alt="Residential Construction"></a>
-			<div class="service-body">
-				<h3>Residential Construction</h3>
-				<p>Custom homes and apartment buildings built to last.</p>
-			</div>
-		</div>
+<!-- ══ STATS STRIP ══ -->
+<div class="svc-stats" aria-label="Key statistics">
+  <div class="stat-item"><strong>120+</strong><span>Plots Sold</span></div>
+  <div class="stat-item"><strong>8+</strong><span>Years Experience</span></div>
+  <div class="stat-item"><strong>4</strong><span>Active Projects</span></div>
+  <div class="stat-item"><strong>98%</strong><span>Client Satisfaction</span></div>
+</div>
 
-		<div class="service-card">
-			<a href="services.html#commercial"><img src="images/project2.jpg" alt="Commercial Buildings"></a>
-			<div class="service-body">
-				<h3>Commercial Buildings</h3>
-				<p>Office, retail, and mixed-use developments.</p>
-			</div>
-		</div>
+<!-- ══ CORE SERVICES GRID ══ -->
+<section class="svc-section" aria-label="Our services">
+  <div class="section-header">
+    <span class="section-label">Our Services</span>
+    <h2>Everything You Need Under One Roof</h2>
+    <p>We cover the full spectrum of land and property services so you can invest with confidence and clarity.</p>
+  </div>
 
-		<div class="service-card">
-			<a href="services.html#renovation"><img src="images/project4.jpg" alt="Renovation"></a>
-			<div class="service-body">
-				<h3>Renovation & Remodeling</h3>
-				<p>Modern upgrades that increase value and comfort.</p>
-			</div>
-		</div>
+  <div class="svc-grid">
 
-		<div class="service-card">
-			<a href="services.html#interior"><img src="images/project3.jpg" alt="Interior Design"></a>
-			<div class="service-body">
-				<h3>Interior Design</h3>
-				<p>Functional, beautiful interiors tailored to your needs.</p>
-			</div>
-		</div>
-	</div>
+    <article class="svc-card" id="service-plot-selling">
+      <div class="svc-card-img-wrap">
+        <img src="images/plot1.jpeg" alt="Residential plot for sale in Rajshahi">
+        <div class="svc-card-tag">Most Popular</div>
+        <div class="svc-icon-bubble">🏡</div>
+      </div>
+      <div class="svc-card-body">
+        <h3>Residential Plot Selling</h3>
+        <p>Find the ideal residential plot from our curated catalogue. All plots are legally verified, fully surveyed, and ready for registration.</p>
+        <a href="projects.html" class="svc-card-link" id="link-residential">Explore Plots</a>
+      </div>
+    </article>
+
+    <article class="svc-card" id="service-commercial">
+      <div class="svc-card-img-wrap">
+        <img src="images/plot2.jpg" alt="Commercial land in Godagari">
+        <div class="svc-card-tag">Commercial</div>
+        <div class="svc-icon-bubble">🏢</div>
+      </div>
+      <div class="svc-card-body">
+        <h3>Commercial Land Deals</h3>
+        <p>Premium commercial land parcels in strategic locations, ideal for retail, office developments, or mixed-use projects.</p>
+        <a href="projects.html" class="svc-card-link" id="link-commercial">View Options</a>
+      </div>
+    </article>
+
+    <article class="svc-card" id="service-legal">
+      <div class="svc-card-img-wrap">
+        <img src="images/plot3.webp" alt="Legal documentation service">
+        <div class="svc-card-tag">Documentation</div>
+        <div class="svc-icon-bubble">📋</div>
+      </div>
+      <div class="svc-card-body">
+        <h3>Legal Documentation</h3>
+        <p>Our in-house team handles deed preparation, mutation, land tax clearance, and full registration with local government offices.</p>
+        <a href="contact.html" class="svc-card-link" id="link-legal">Ask an Expert</a>
+      </div>
+    </article>
+
+    <article class="svc-card" id="service-site-visit">
+      <div class="svc-card-img-wrap">
+        <img src="images/project1.jpg" alt="Guided site visit service">
+        <div class="svc-card-tag">On-Site</div>
+        <div class="svc-icon-bubble">📍</div>
+      </div>
+      <div class="svc-card-body">
+        <h3>Guided Site Visits</h3>
+        <p>We arrange and accompany you on professional site visits, providing a detailed walk-through of the location, neighbourhood, and access routes.</p>
+        <a href="contact.html" class="svc-card-link" id="link-site-visit">Book a Visit</a>
+      </div>
+    </article>
+
+    <article class="svc-card" id="service-valuation">
+      <div class="svc-card-img-wrap">
+        <img src="images/project2.jpg" alt="Property valuation service">
+        <div class="svc-card-tag">Valuation</div>
+        <div class="svc-icon-bubble">📊</div>
+      </div>
+      <div class="svc-card-body">
+        <h3>Property Valuation</h3>
+        <p>Get an accurate, market-aligned valuation report for any land or plot in the Rajshahi region from our certified valuators.</p>
+        <a href="contact.html" class="svc-card-link" id="link-valuation">Request Report</a>
+      </div>
+    </article>
+
+    <article class="svc-card" id="service-investment">
+      <div class="svc-card-img-wrap">
+        <img src="images/project3.jpg" alt="Real-estate investment consulting">
+        <div class="svc-card-tag">Consulting</div>
+        <div class="svc-icon-bubble">💡</div>
+      </div>
+      <div class="svc-card-body">
+        <h3>Investment Consulting</h3>
+        <p>Unsure where to invest? Our consultants analyse market trends, location potential, and growth corridors to guide your decision.</p>
+        <a href="contact.html" class="svc-card-link" id="link-invest">Speak to Us</a>
+      </div>
+    </article>
+
+  </div>
 </section>
-<footer>© 2026 ABC Construction</footer>
+
+<!-- ══ FEATURED SERVICE ══ -->
+<section class="featured-svc" aria-label="Featured service detail">
+  <div class="featured-inner">
+    <div class="featured-img-wrap">
+      <img src="images/project4.jpg" alt="Full plot registration assistance">
+      <div class="featured-img-badge">🏆 End-to-End Service</div>
+    </div>
+    <div class="featured-text">
+      <span class="section-label">Why We're Different</span>
+      <h2>Complete Plot Registration — Handled for You</h2>
+      <p>Our most sought-after service combines everything: legal due-diligence, ownership transfer, government registry, and post-sale support — all in a single, stress-free package.</p>
+      <ul class="feature-list">
+        <li>Title deed verification &amp; chain-of-ownership check</li>
+        <li>Mutation &amp; land-tax clearance assistance</li>
+        <li>Sub-registrar office accompaniment</li>
+        <li>Post-sale documentation handover</li>
+        <li>Dedicated relationship manager throughout the process</li>
+      </ul>
+      <a href="contact.html" class="btn-primary" id="featured-cta">Start the Process →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-section" aria-label="How our process works">
+  <div class="section-header">
+    <span class="section-label">Our Process</span>
+    <h2>How It Works — Simple &amp; Transparent</h2>
+    <p>From your first call to collecting your title deed, here's exactly what to expect.</p>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">1</div>
+      <h3>Free Consultation</h3>
+      <p>Tell us your requirements — budget, location preference, and timeline. No obligations.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">2</div>
+      <h3>Plot Shortlisting</h3>
+      <p>We match you with verified plots that fit your criteria and arrange site visits.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">3</div>
+      <h3>Legal Verification</h3>
+      <p>Our team performs due-diligence on ownership records, mutations, and encumbrances.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">4</div>
+      <h3>Agreement &amp; Payment</h3>
+      <p>Secure a written agreement and complete payment through our transparent process.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-num">5</div>
+      <h3>Registration</h3>
+      <p>We accompany you to the sub-registrar office and ensure smooth deed execution.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA BAND ══ -->
+<section class="svc-cta" aria-label="Call to action">
+  <h2>Ready to Find Your Perfect Plot?</h2>
+  <p>Talk to a Land Finder BD expert today — free, fast, and with no pressure.</p>
+  <a href="contact.html" class="btn-dark" id="bottom-cta">Contact Us Now</a>
+</section>
+
+<footer>© 2026 Land Finder BD — Rajshahi, Bangladesh</footer>
 <script src="js/script.js"></script>
 </body>
 </html>

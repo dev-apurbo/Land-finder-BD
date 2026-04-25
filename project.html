@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Title & meta updated dynamically by JS -->
+  <title>Project Details | Land Finder BD</title>
+  <meta name="description" content="Detailed information about this Land Finder BD project.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { font-family: 'Inter', Arial, sans-serif; }
+
+    /* ── NOT FOUND STATE ── */
+    .not-found {
+      text-align: center;
+      padding: 120px 20px;
+      color: #5a6a7a;
+    }
+    .not-found h1 { font-size: 2.2rem; color: #0f1720; margin-bottom: 12px; }
+    .not-found p  { font-size: 1rem; margin-bottom: 28px; }
+
+    /* ── PROJECT HERO ── */
+    .proj-hero {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+      background: #0f1720;
+    }
+    .proj-hero-bg {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      opacity: 0.35;
+      transition: transform 8s ease;
+    }
+    .proj-hero:hover .proj-hero-bg { transform: scale(1.05); }
+    .proj-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15,23,32,0.92) 0%, rgba(15,23,32,0.35) 60%, transparent 100%);
+    }
+    .proj-hero-content {
+      position: absolute;
+      bottom: 36px;
+      left: 0; right: 0;
+      padding: 0 32px;
+      color: #fff;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .proj-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .badge-ongoing  { background: rgba(34,197,94,0.2);  color: #4ade80; border: 1px solid rgba(34,197,94,0.35); }
+    .badge-upcoming { background: rgba(99,102,241,0.2); color: #a5b4fc; border: 1px solid rgba(99,102,241,0.35); }
+    .badge-completed{ background: rgba(245,158,11,0.2); color: #fcd34d; border: 1px solid rgba(245,158,11,0.35); }
+    .proj-hero-content h1 {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 800;
+      margin: 0 0 8px;
+      line-height: 1.15;
+    }
+    .proj-hero-content .proj-subtitle {
+      color: #c9d1da;
+      font-size: 1rem;
+      margin: 0;
+    }
+    .proj-hero-content .proj-location {
+      color: #f59e0b;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 8px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb {
+      background: #f8fafc;
+      border-bottom: 1px solid #e5e7eb;
+      padding: 12px 32px;
+      font-size: 0.83rem;
+      color: #8a9bb0;
+    }
+    .breadcrumb a { color: #f59e0b; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ── MAIN LAYOUT ── */
+    .proj-body {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      display: grid;
+      grid-template-columns: 1fr 320px;
+      gap: 48px;
+      align-items: start;
+    }
+
+    /* ── GALLERY ── */
+    .proj-gallery { margin-bottom: 36px; }
+    .gallery-main {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(15,23,32,0.12);
+      background: #e5e7eb;
+    }
+    .gallery-main img {
+      width: 100%;
+      height: 360px;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.3s ease;
+    }
+    .gallery-thumbs {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+    .gallery-thumb {
+      width: 80px;
+      height: 60px;
+      object-fit: cover;
+      border-radius: 8px;
+      cursor: pointer;
+      opacity: 0.6;
+      transition: opacity 0.2s, transform 0.2s, outline 0.2s;
+      outline: 2px solid transparent;
+    }
+    .gallery-thumb:hover { opacity: 1; transform: scale(1.05); }
+    .gallery-thumb.active { opacity: 1; outline: 2px solid #f59e0b; }
+
+    /* ── DESCRIPTION ── */
+    .proj-description h2 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: #0f1720;
+      margin: 0 0 14px;
+    }
+    .proj-description p {
+      color: #5a6a7a;
+      font-size: 0.97rem;
+      line-height: 1.8;
+      margin: 0 0 28px;
+    }
+
+    /* ── HIGHLIGHTS ── */
+    .highlights-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #0f1720;
+      margin-bottom: 14px;
+    }
+    .highlights-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .highlights-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.93rem;
+      color: #374151;
+      line-height: 1.5;
+    }
+    .highlights-list li::before {
+      content: '✓';
+      background: rgba(245,158,11,0.12);
+      color: #f59e0b;
+      border: 1px solid rgba(245,158,11,0.3);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ── SIDEBAR CARD ── */
+    .proj-sidebar { display: flex; flex-direction: column; gap: 20px; }
+    .info-card {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 16px rgba(15,23,32,0.06);
+      padding: 24px;
+    }
+    .info-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #0f1720;
+      margin: 0 0 16px;
+      padding-bottom: 12px;
+      border-bottom: 2px solid #f3f4f6;
+    }
+    .info-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid #f3f4f6;
+      font-size: 0.88rem;
+    }
+    .info-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .info-label { color: #8a9bb0; font-weight: 500; flex-shrink: 0; }
+    .info-value { color: #0f1720; font-weight: 600; text-align: right; }
+
+    /* Price highlight */
+    .price-value {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #f59e0b;
+    }
+
+    /* CTA card */
+    .cta-card {
+      background: linear-gradient(135deg, #0f1720 0%, #1a2535 100%);
+      border-radius: 14px;
+      padding: 26px 24px;
+      text-align: center;
+      color: #fff;
+    }
+    .cta-card h3 { font-size: 1.05rem; margin: 0 0 8px; color: #fff; }
+    .cta-card p  { font-size: 0.85rem; color: #8a9bb0; margin: 0 0 20px; line-height: 1.6; }
+    .btn-amber {
+      display: block;
+      background: #f59e0b;
+      color: #0f1720;
+      font-weight: 700;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.93rem;
+      transition: background 0.2s, transform 0.2s;
+      margin-bottom: 10px;
+    }
+    .btn-amber:hover { background: #d97706; transform: translateY(-2px); }
+    .btn-ghost {
+      display: block;
+      background: transparent;
+      color: #8a9bb0;
+      border: 1px solid rgba(255,255,255,0.12);
+      font-weight: 600;
+      padding: 11px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.88rem;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: #f59e0b; color: #f59e0b; }
+
+    /* ── BACK LINK ── */
+    .back-row {
+      max-width: 1100px;
+      margin: 24px auto 0;
+      padding: 0 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: #f59e0b;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+    .back-link::before { content: '←'; }
+    .back-link:hover { text-decoration: underline; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .proj-body { grid-template-columns: 1fr; gap: 32px; }
+      .proj-hero { height: 280px; }
+      .proj-hero-content { padding: 0 18px; bottom: 24px; }
+      .gallery-main img { height: 240px; }
+      .breadcrumb { padding: 10px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ HEADER ══ -->
+<header>
+  <h2>Land Finder BD</h2>
+  <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
+  <nav id="nav-menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="projects.html" style="color:#f59e0b;">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<!-- ══ DYNAMIC CONTENT — injected by JS ══ -->
+<div id="page-root"></div>
+
+<footer>© 2026 Land Finder BD — Rajshahi, Bangladesh</footer>
+
+<!-- Load data first, then the template logic -->
+<script src="js/projects-data.js"></script>
+<script src="js/script.js"></script>
+<script>
+(function () {
+  const params = new URLSearchParams(window.location.search);
+  const id = parseInt(params.get('id'), 10);
+  const project = PROJECTS.find(p => p.id === id);
+  const root = document.getElementById('page-root');
+
+  /* ── NOT FOUND ── */
+  if (!project) {
+    root.innerHTML = `
+      <div class="not-found">
+        <h1>Project Not Found</h1>
+        <p>The project you're looking for doesn't exist or has been removed.</p>
+        <a href="projects.html" class="btn">← Back to Projects</a>
+      </div>`;
+    return;
+  }
+
+  /* ── Update page title & meta ── */
+  document.title = `${project.title} | Land Finder BD`;
+  document.querySelector('meta[name="description"]').content =
+    `${project.title} — ${project.subtitle}. ${project.location}.`;
+
+  /* ── Badge class helper ── */
+  function badgeClass(status) {
+    if (status === 'Ongoing')   return 'badge-ongoing';
+    if (status === 'Upcoming')  return 'badge-upcoming';
+    return 'badge-completed';
+  }
+
+  /* ── Gallery thumbnails HTML ── */
+  const thumbsHTML = project.images
+    .map((src, i) => `<img src="${src}" alt="${project.title} view ${i+1}" class="gallery-thumb${i===0?' active':''}" data-idx="${i}" onclick="switchGallery(this, '${src}')">`)
+    .join('');
+
+  /* ── Highlights HTML ── */
+  const highlightsHTML = project.highlights
+    .map(h => `<li>${h}</li>`)
+    .join('');
+
+  /* ── Render ── */
+  root.innerHTML = `
+    <!-- Hero -->
+    <section class="proj-hero" aria-label="${project.title} hero">
+      <img class="proj-hero-bg" src="${project.coverImage}" alt="${project.title}">
+      <div class="proj-hero-overlay"></div>
+      <div class="proj-hero-content">
+        <div class="proj-badge ${badgeClass(project.status)}">● ${project.status}</div>
+        <h1>${project.title}</h1>
+        <p class="proj-subtitle">${project.subtitle}</p>
+        <p class="proj-location">📍 ${project.location}</p>
+      </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">Home</a><span>›</span>
+      <a href="projects.html">Projects</a><span>›</span>
+      ${project.title}
+    </nav>
+
+    <!-- Back -->
+    <div class="back-row">
+      <a href="projects.html" class="back-link">Back to All Projects</a>
+    </div>
+
+    <!-- Body -->
+    <div class="proj-body">
+      <!-- Left column -->
+      <div>
+        <!-- Gallery -->
+        <div class="proj-gallery">
+          <div class="gallery-main">
+            <img id="gallery-main-img" src="${project.images[0]}" alt="${project.title} main view">
+          </div>
+          ${project.images.length > 1 ? `<div class="gallery-thumbs">${thumbsHTML}</div>` : ''}
+        </div>
+
+        <!-- Description -->
+        <div class="proj-description">
+          <h2>About This Project</h2>
+          <p>${project.description}</p>
+
+          <p class="highlights-title">Key Highlights</p>
+          <ul class="highlights-list">${highlightsHTML}</ul>
+        </div>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="proj-sidebar">
+        <!-- Price -->
+        <div class="info-card">
+          <h3>Plot Pricing</h3>
+          <div class="info-row">
+            <span class="info-label">Price Range</span>
+            <span class="info-value price-value">${project.price}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Available Plots</span>
+            <span class="info-value">${project.plots}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Total Area</span>
+            <span class="info-value">${project.area}</span>
+          </div>
+        </div>
+
+        <!-- Details -->
+        <div class="info-card">
+          <h3>Project Details</h3>
+          <div class="info-row">
+            <span class="info-label">Category</span>
+            <span class="info-value">${project.category}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Location</span>
+            <span class="info-value">${project.location}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Status</span>
+            <span class="info-value">${project.status}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Start Date</span>
+            <span class="info-value">${project.startDate}</span>
+          </div>
+          <div class="info-row">
+            <span class="info-label">Est. Completion</span>
+            <span class="info-value">${project.completionDate}</span>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-card">
+          <h3>Interested in This Plot?</h3>
+          <p>Our team can arrange a free site visit and answer all your questions.</p>
+          <a href="contact.html?ref=${project.id}" class="btn-amber" id="proj-contact-cta">Book a Free Site Visit</a>
+          <a href="projects.html" class="btn-ghost">Browse Other Projects</a>
+        </div>
+      </aside>
+    </div>
+  `;
+})();
+
+/* ── Gallery switcher (global so onclick works) ── */
+function switchGallery(thumb, src) {
+  document.getElementById('gallery-main-img').src = src;
+  document.querySelectorAll('.gallery-thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+}
+</script>
+</body>
+</html>

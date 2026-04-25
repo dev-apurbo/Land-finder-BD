@@ -30,29 +30,7 @@
 <section class="running-preview">
 	<h2 style="text-align:center">Running Projects</h2>
 	<p style="text-align:center; margin-bottom:18px">A quick preview of our ongoing work — click an image for details.</p>
-	<div class="project-gallery" style="max-width:1100px; margin:0 auto;">
-		<div class="project-card">
-			<a href="project1.html"><img src="images/plot1.jpeg" alt="Residential Complex"></a>
-			<div class="project-info">
-				<h3>Residential Complex</h3>
-				<p>Godagari • Ongoing</p>
-			</div>
-		</div>
-		<div class="project-card">
-			<a href="project2.html"><img src="images/plot2.jpg" alt="Commercial Tower"></a>
-			<div class="project-info">
-				<h3>Commercial Tower</h3>
-				<p>Godagari • Ongoing</p>
-			</div>
-		</div>
-		<div class="project-card">
-			<a href="project3.html"><img src="images/plot3.webp" alt="Office Block"></a>
-			<div class="project-info">
-				<h3>Office Block</h3>
-				<p>Godagari • Ongoing</p>
-			</div>
-		</div>
-	</div>
+	<div class="project-gallery" id="home-proj-gallery" style="max-width:1100px; margin:0 auto;"></div>
 	<p style="text-align:center; margin-top:16px"><a href="projects.html" class="btn">View All Projects</a></p>
 </section>
 
@@ -77,6 +55,24 @@
 	</div>
 </section>
 <footer>© Land Finder BD</footer>
+<script src="js/projects-data.js"></script>
 <script src="js/script.js"></script>
+<script>
+  // Render featured projects on homepage
+  (function(){
+    const gallery = document.getElementById('home-proj-gallery');
+    if (!gallery || typeof PROJECTS === 'undefined') return;
+    const featured = PROJECTS.filter(p => p.featured).slice(0, 3);
+    gallery.innerHTML = featured.map(p => `
+      <div class="project-card">
+        <a href="project.html?id=${p.id}"><img src="${p.coverImage}" alt="${p.title}"></a>
+        <div class="project-info">
+          <h3>${p.title}</h3>
+          <p>${p.location} &bull; ${p.status}</p>
+        </div>
+      </div>
+    `).join('');
+  })();
+</script>
 </body>
 </html>
