@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects | Land Finder BD</title>
-  <meta name="description" content="Browse all running and upcoming land & plot projects by Land Finder BD in Rajshahi, Bangladesh.">
+  <meta name="description"
+    content="Browse all running and upcoming land & plot projects by Land Finder BD in Rajshahi, Bangladesh.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <style>
-    body { font-family: 'Inter', Arial, sans-serif; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+    }
 
     /* ── PAGE HERO ── */
     .page-hero {
@@ -19,10 +23,11 @@
       text-align: center;
       color: #fff;
     }
+
     .page-hero .label {
       display: inline-block;
-      background: rgba(245,158,11,0.15);
-      border: 1px solid rgba(245,158,11,0.4);
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
       color: #f59e0b;
       font-size: 0.75rem;
       font-weight: 700;
@@ -32,11 +37,13 @@
       border-radius: 50px;
       margin-bottom: 16px;
     }
+
     .page-hero h1 {
       font-size: clamp(1.8rem, 4vw, 2.8rem);
       font-weight: 800;
       margin: 0 0 12px;
     }
+
     .page-hero p {
       color: #8a9bb0;
       font-size: 1rem;
@@ -53,6 +60,7 @@
       gap: 4px;
       flex-wrap: wrap;
     }
+
     .filter-btn {
       background: none;
       border: none;
@@ -65,8 +73,15 @@
       transition: color 0.2s, border-color 0.2s;
       font-family: inherit;
     }
-    .filter-btn:hover  { color: #0f1720; }
-    .filter-btn.active { color: #f59e0b; border-bottom-color: #f59e0b; }
+
+    .filter-btn:hover {
+      color: #0f1720;
+    }
+
+    .filter-btn.active {
+      color: #f59e0b;
+      border-bottom-color: #f59e0b;
+    }
 
     /* ── GRID ── */
     .projects-section {
@@ -74,6 +89,7 @@
       background: #f8fafc;
       min-height: 300px;
     }
+
     .proj-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
@@ -81,22 +97,29 @@
       max-width: 1140px;
       margin: 0 auto;
     }
+
     .proj-card {
       background: #fff;
       border-radius: 14px;
       overflow: hidden;
-      box-shadow: 0 4px 18px rgba(15,23,32,0.07);
-      border: 1px solid rgba(15,23,32,0.05);
+      box-shadow: 0 4px 18px rgba(15, 23, 32, 0.07);
+      border: 1px solid rgba(15, 23, 32, 0.05);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       display: flex;
       flex-direction: column;
     }
-    .proj-card:hover { transform: translateY(-8px); box-shadow: 0 16px 40px rgba(15,23,32,0.13); }
+
+    .proj-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(15, 23, 32, 0.13);
+    }
+
     .proj-card-img {
       position: relative;
       height: 210px;
       overflow: hidden;
     }
+
     .proj-card-img img {
       width: 100%;
       height: 100%;
@@ -104,7 +127,11 @@
       display: block;
       transition: transform 0.5s ease;
     }
-    .proj-card:hover .proj-card-img img { transform: scale(1.06); }
+
+    .proj-card:hover .proj-card-img img {
+      transform: scale(1.06);
+    }
+
     .proj-status-badge {
       position: absolute;
       top: 14px;
@@ -115,9 +142,22 @@
       border-radius: 4px;
       letter-spacing: 0.05em;
     }
-    .status-ongoing   { background: #dcfce7; color: #16a34a; }
-    .status-upcoming  { background: #ede9fe; color: #7c3aed; }
-    .status-completed { background: #fef9c3; color: #a16207; }
+
+    .status-ongoing {
+      background: #dcfce7;
+      color: #16a34a;
+    }
+
+    .status-upcoming {
+      background: #ede9fe;
+      color: #7c3aed;
+    }
+
+    .status-completed {
+      background: #fef9c3;
+      color: #a16207;
+    }
+
     .proj-category-tag {
       position: absolute;
       top: 14px;
@@ -126,16 +166,18 @@
       font-weight: 600;
       padding: 3px 9px;
       border-radius: 4px;
-      background: rgba(15,23,32,0.65);
+      background: rgba(15, 23, 32, 0.65);
       color: #e2e8f0;
       letter-spacing: 0.04em;
     }
+
     .proj-card-body {
       padding: 20px 22px 24px;
       flex: 1;
       display: flex;
       flex-direction: column;
     }
+
     .proj-card-location {
       color: #f59e0b;
       font-size: 0.78rem;
@@ -145,12 +187,14 @@
       align-items: center;
       gap: 4px;
     }
+
     .proj-card-body h3 {
       font-size: 1.1rem;
       font-weight: 700;
       color: #0f1720;
       margin: 0 0 8px;
     }
+
     .proj-card-body p {
       font-size: 0.87rem;
       color: #6b7a8d;
@@ -158,6 +202,7 @@
       margin: 0 0 16px;
       flex: 1;
     }
+
     .proj-card-meta {
       display: flex;
       justify-content: space-between;
@@ -168,7 +213,11 @@
       padding-top: 14px;
       margin-top: auto;
     }
-    .proj-card-meta strong { color: #0f1720; }
+
+    .proj-card-meta strong {
+      color: #0f1720;
+    }
+
     .proj-detail-link {
       display: inline-flex;
       align-items: center;
@@ -182,8 +231,14 @@
       text-decoration: none;
       transition: background 0.2s;
     }
-    .proj-detail-link:hover { background: #d97706; }
-    .proj-detail-link::after { content: '→'; }
+
+    .proj-detail-link:hover {
+      background: #d97706;
+    }
+
+    .proj-detail-link::after {
+      content: '→';
+    }
 
     /* empty state */
     .empty-state {
@@ -192,71 +247,81 @@
       color: #8a9bb0;
       grid-column: 1 / -1;
     }
-    .empty-state h3 { color: #0f1720; margin-bottom: 8px; }
+
+    .empty-state h3 {
+      color: #0f1720;
+      margin-bottom: 8px;
+    }
 
     @media (max-width: 480px) {
-      .proj-grid { grid-template-columns: 1fr; }
-      .page-hero { padding: 44px 16px 32px; }
+      .proj-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .page-hero {
+        padding: 44px 16px 32px;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<header>
-  <h2>Land Finder BD</h2>
-  <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
-  <nav id="nav-menu">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="projects.html" style="color:#f59e0b;">Projects</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-</header>
+  <header>
+    <h2>Land Finder BD</h2>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
+    <nav id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html" style="color:#f59e0b;">Projects</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
 
-<!-- Hero -->
-<section class="page-hero">
-  <div class="label">Our Portfolio</div>
-  <h1>All Projects</h1>
-  <p>Browse our running, upcoming, and completed land developments across Rajshahi.</p>
-</section>
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="label">Our Portfolio</div>
+    <h1>All Projects</h1>
+    <p>Browse our running, upcoming, and completed land developments across Rajshahi.</p>
+  </section>
 
-<!-- Filter tabs -->
-<div class="filter-bar" role="tablist" aria-label="Filter projects by status">
-  <button class="filter-btn active" data-filter="all"     onclick="filterProjects('all')">All</button>
-  <button class="filter-btn"        data-filter="Ongoing"   onclick="filterProjects('Ongoing')">Ongoing</button>
-  <button class="filter-btn"        data-filter="Upcoming"  onclick="filterProjects('Upcoming')">Upcoming</button>
-  <button class="filter-btn"        data-filter="Completed" onclick="filterProjects('Completed')">Completed</button>
-</div>
+  <!-- Filter tabs -->
+  <div class="filter-bar" role="tablist" aria-label="Filter projects by status">
+    <button class="filter-btn active" data-filter="all" onclick="filterProjects('all')">All</button>
+    <button class="filter-btn" data-filter="Ongoing" onclick="filterProjects('Ongoing')">Ongoing</button>
+    <button class="filter-btn" data-filter="Upcoming" onclick="filterProjects('Upcoming')">Upcoming</button>
+    <button class="filter-btn" data-filter="Completed" onclick="filterProjects('Completed')">Completed</button>
+  </div>
 
-<!-- Projects grid (populated by JS) -->
-<section class="projects-section">
-  <div class="proj-grid" id="proj-grid"></div>
-</section>
+  <!-- Projects grid (populated by JS) -->
+  <section class="projects-section">
+    <div class="proj-grid" id="proj-grid"></div>
+  </section>
 
-<footer>© 2026 Land Finder BD — Rajshahi, Bangladesh</footer>
+  <footer>© 2026 Land Finder BD — Rajshahi, Bangladesh</footer>
 
-<script src="js/projects-data.js"></script>
-<script src="js/script.js"></script>
-<script>
-  let currentFilter = 'all';
+  <script src="js/projects-data.js"></script>
+  <script src="js/script.js"></script>
+  <script>
+    let currentFilter = 'all';
 
-  function statusClass(status) {
-    if (status === 'Ongoing')   return 'status-ongoing';
-    if (status === 'Upcoming')  return 'status-upcoming';
-    return 'status-completed';
-  }
-
-  function renderProjects(filter) {
-    const grid = document.getElementById('proj-grid');
-    const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.status === filter);
-
-    if (list.length === 0) {
-      grid.innerHTML = `<div class="empty-state"><h3>No projects found</h3><p>Check back soon for new listings.</p></div>`;
-      return;
+    function statusClass(status) {
+      if (status === 'Ongoing') return 'status-ongoing';
+      if (status === 'Upcoming') return 'status-upcoming';
+      return 'status-completed';
     }
 
-    grid.innerHTML = list.map(p => `
+    function renderProjects(filter) {
+      const grid = document.getElementById('proj-grid');
+      const list = filter === 'all' ? PROJECTS : PROJECTS.filter(p => p.status === filter);
+
+      if (list.length === 0) {
+        grid.innerHTML = `<div class="empty-state"><h3>No projects found</h3><p>Check back soon for new listings.</p></div>`;
+        return;
+      }
+
+      grid.innerHTML = list.map(p => `
       <article class="proj-card">
         <div class="proj-card-img">
           <img src="${p.coverImage}" alt="${p.title}" loading="lazy">
@@ -274,18 +339,19 @@
         </div>
       </article>
     `).join('');
-  }
+    }
 
-  function filterProjects(filter) {
-    currentFilter = filter;
-    document.querySelectorAll('.filter-btn').forEach(btn => {
-      btn.classList.toggle('active', btn.dataset.filter === filter);
-    });
-    renderProjects(filter);
-  }
+    function filterProjects(filter) {
+      currentFilter = filter;
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.filter === filter);
+      });
+      renderProjects(filter);
+    }
 
-  // initial render
-  renderProjects('all');
-</script>
+    // initial render
+    renderProjects('all');
+  </script>
 </body>
+
 </html>
