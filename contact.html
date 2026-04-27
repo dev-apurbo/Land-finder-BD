@@ -1,70 +1,544 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact | ABC Construction</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact | Land Finder BD</title>
+  <meta name="description" content="Contact Land Finder BD for land buying consultation, site visits, legal assistance, and project information across Rajshahi.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body { font-family: 'Inter', Arial, sans-serif; background: #f8fafc; color: #0f1720; }
+
+    .page-wrap { background: #f8fafc; }
+
+    .contact-hero {
+      position: relative;
+      min-height: 360px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: #0f1720;
+    }
+    .contact-hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('images/project2.jpg') center/cover no-repeat;
+      opacity: 0.2;
+      transform: scale(1.04);
+    }
+    .contact-hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(15,23,32,0.9) 0%, rgba(37,55,72,0.78) 100%);
+    }
+    .contact-hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      max-width: 760px;
+      padding: 52px 20px;
+    }
+    .contact-hero-badge {
+      display: inline-block;
+      background: rgba(245,158,11,0.15);
+      border: 1px solid rgba(245,158,11,0.45);
+      color: #f59e0b;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 999px;
+      margin-bottom: 16px;
+    }
+    .contact-hero h1 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      line-height: 1.15;
+      font-weight: 800;
+    }
+    .contact-hero p {
+      margin: 0;
+      color: #c9d1da;
+      font-size: 1.02rem;
+      line-height: 1.7;
+    }
+
+    .contact-main {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 72px 20px 24px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: 28px;
+    }
+
+    .info-panel,
+    .form-panel {
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid rgba(15,23,32,0.08);
+      box-shadow: 0 8px 28px rgba(15,23,32,0.08);
+      padding: 24px;
+    }
+
+    .panel-label {
+      display: inline-block;
+      color: #f59e0b;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .info-panel h2,
+    .form-panel h2 {
+      margin: 0 0 8px;
+      font-size: 1.5rem;
+      line-height: 1.25;
+    }
+    .panel-sub {
+      margin: 0 0 18px;
+      color: #5a6a7a;
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .info-grid {
+      display: grid;
+      gap: 12px;
+    }
+    .info-item {
+      background: #f8fafc;
+      border: 1px solid rgba(15,23,32,0.08);
+      border-radius: 10px;
+      padding: 14px;
+    }
+    .info-item h3 {
+      margin: 0 0 6px;
+      font-size: 0.95rem;
+      color: #0f1720;
+    }
+    .info-item p,
+    .info-item a {
+      margin: 0;
+      font-size: 0.92rem;
+      color: #5a6a7a;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .info-item a:hover { color: #f59e0b; }
+
+    .form-grid {
+      display: grid;
+      gap: 12px;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #1a2535;
+    }
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid #d6dde7;
+      border-radius: 8px;
+      padding: 11px 12px;
+      font-family: inherit;
+      font-size: 0.94rem;
+      color: #1a2535;
+      background: #fff;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #f59e0b;
+      box-shadow: 0 0 0 3px rgba(245,158,11,0.16);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn-primary {
+      background: #f59e0b;
+      color: #0f1720;
+      font-weight: 700;
+      padding: 13px 24px;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background 0.25s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: #d97706;
+      transform: translateY(-2px);
+    }
+
+    .partners {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 42px 20px 80px;
+    }
+    .section-header {
+      text-align: center;
+      max-width: 620px;
+      margin: 0 auto 28px;
+    }
+    .section-label {
+      display: inline-block;
+      color: #f59e0b;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .section-header h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.55rem, 3.2vw, 2.1rem);
+      line-height: 1.2;
+      font-weight: 800;
+      color: #0f1720;
+    }
+    .section-header p {
+      margin: 0;
+      color: #5a6a7a;
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .partner-card {
+      background: #fff;
+      border: 1px solid rgba(15,23,32,0.08);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 6px 22px rgba(15,23,32,0.06);
+    }
+    .partner-card h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+      color: #0f1720;
+    }
+    .partner-contact {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 7px;
+      color: #5a6a7a;
+      font-size: 0.9rem;
+    }
+    .partner-contact a {
+      color: #f59e0b;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      text-align: center;
+      color: #8a9bb0;
+      padding: 20px;
+      background: #0f1720;
+    }
+
+    @media (max-width: 900px) {
+      .contact-main {
+        grid-template-columns: 1fr;
+        padding-top: 50px;
+        gap: 18px;
+      }
+      .partners {
+        padding-top: 26px;
+      }
+    }
+    @media (max-width: 700px) {
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        padding: 12px 16px;
+        background: #0f1720;
+        border-bottom: 1px solid rgba(255,255,255,0.08);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      header h2 {
+        color: #fff;
+        font-size: 1.1rem;
+        margin: 0;
+      }
+      .nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 38px;
+        height: 36px;
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 8px;
+        background: transparent;
+        color: #fff;
+        font-size: 1.1rem;
+      }
+      nav {
+        position: absolute;
+        top: 58px;
+        right: 14px;
+        left: 14px;
+        background: #1a2535;
+        border: 1px solid rgba(255,255,255,0.1);
+        border-radius: 10px;
+        display: none;
+        flex-direction: column;
+        padding: 10px;
+        gap: 2px;
+      }
+      nav.show {
+        display: flex;
+      }
+      nav a {
+        color: #dbe3ec;
+        padding: 10px 12px;
+        border-radius: 8px;
+        text-decoration: none;
+      }
+      nav a:hover {
+        background: rgba(245,158,11,0.15);
+      }
+
+      .contact-hero {
+        min-height: 300px;
+      }
+      .contact-hero-content {
+        padding: 38px 14px;
+      }
+      .contact-hero h1 {
+        font-size: 1.65rem;
+      }
+      .contact-hero p {
+        font-size: 0.94rem;
+        line-height: 1.6;
+      }
+
+      .contact-main {
+        padding: 28px 14px 8px;
+      }
+      .info-panel,
+      .form-panel {
+        padding: 16px;
+        border-radius: 12px;
+      }
+      .info-panel h2,
+      .form-panel h2 {
+        font-size: 1.24rem;
+      }
+      .panel-sub {
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+      }
+
+      label {
+        font-size: 0.88rem;
+      }
+      input,
+      select,
+      textarea {
+        font-size: 16px;
+        padding: 12px;
+      }
+      .btn-primary {
+        width: 100%;
+        min-height: 46px;
+      }
+
+      .partners {
+        padding: 28px 14px 58px;
+      }
+      .section-header {
+        margin-bottom: 20px;
+      }
+      .section-header h2 {
+        font-size: 1.42rem;
+      }
+      .section-header p {
+        font-size: 0.9rem;
+      }
+      .partner-grid {
+        grid-template-columns: 1fr;
+      }
+      footer {
+        font-size: 0.86rem;
+        padding: 16px 12px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .contact-hero h1 {
+        font-size: 1.5rem;
+      }
+      .contact-hero-badge,
+      .panel-label,
+      .section-label {
+        font-size: 0.72rem;
+      }
+      .info-item,
+      .partner-card {
+        padding: 12px;
+      }
+    }
+  </style>
 </head>
 <body>
-<header>
-<h2>ABC Construction</h2>
-<button class="nav-toggle" onclick="toggleNav()">☰</button>
-<nav id="nav-menu">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="services.html">Services</a>
-<a href="projects.html">Projects</a>
-<a href="contact.html">Contact</a>
-</nav>
-</header>
+<div class="page-wrap">
+  <header>
+    <h2>Land Finder BD</h2>
+    <button class="nav-toggle" onclick="toggleNav()" aria-label="Toggle navigation">☰</button>
+    <nav id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="contact.html" style="color:#f59e0b;">Contact</a>
+    </nav>
+  </header>
 
+  <section class="contact-hero" aria-label="Contact hero">
+    <div class="contact-hero-bg"></div>
+    <div class="contact-hero-overlay"></div>
+    <div class="contact-hero-content">
+      <div class="contact-hero-badge">Contact Us</div>
+      <h1>Let's Discuss Your Next Property Move</h1>
+      <p>From site visits to legal documentation, our team is ready to guide you with clear advice and quick support.</p>
+    </div>
+  </section>
 
-<section class="partners">
-	<h2>Our Partners</h2>
-	<div class="partner-grid">
-		<div class="partner-card">
-			<h3>Anindya Kumar Bhaket</h3>
-			<ul class="partner-contact">
-				<li>Phone: +8801750573487</li>
-				<li>Email: anindyakumarbhaket@gmail.com</li>
-				<li>WhatsApp: +8801XXXXXXXXX</li>
-				<li><a href="https://facebook.com/partnerA" target="_blank">Facebook</a></li>
-			</ul>
-		</div>
+  <section class="contact-main" aria-label="Contact details and inquiry form">
+    <article class="info-panel">
+      <span class="panel-label">Reach Us</span>
+      <h2>Talk to Our Team</h2>
+      <p class="panel-sub">Share your budget, preferred location, and timeline. We will suggest verified options and next steps.</p>
+      <div class="info-grid">
+        <div class="info-item">
+          <h3>Phone</h3>
+          <p>+8801750573487</p>
+        </div>
+        <div class="info-item">
+          <h3>Email</h3>
+          <a href="mailto:anindyakumarbhaket@gmail.com">anindyakumarbhaket@gmail.com</a>
+        </div>
+        <div class="info-item">
+          <h3>WhatsApp</h3>
+          <p>+8801XXXXXXXXX</p>
+        </div>
+        <div class="info-item">
+          <h3>Office Hours</h3>
+          <p>Sat - Thu, 9:00 AM - 7:00 PM</p>
+        </div>
+      </div>
+    </article>
 
-		<div class="partner-card">
-			<h3>Partner B</h3>
-			<ul class="partner-contact">
-				<li>Phone: +8801XXXXXXXXX</li>
-				<li>Email: partnerB@example.com</li>
-				<li>WhatsApp: +8801XXXXXXXXX</li>
-				<li><a href="https://facebook.com/partnerB" target="_blank">Facebook</a></li>
-			</ul>
-		</div>
+    <article class="form-panel">
+      <span class="panel-label">Quick Inquiry</span>
+      <h2>Send Us a Message</h2>
+      <p class="panel-sub">Fill this form and our consultant will contact you shortly.</p>
+      <form class="form-grid" action="https://formspree.io/f/mwvajabl" method="POST">
+        <div>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name">
+        </div>
+        <div>
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Enter your phone number">
+        </div>
+        <div>
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+        <div>
+          <label for="interest">Interested In</label>
+          <select id="interest" name="interest">
+            <option>Select an option</option>
+            <option>Residential Plot</option>
+            <option>Commercial Plot</option>
+            <option>Site Visit</option>
+            <option>Legal Documentation</option>
+            <option>General Information</option>
+          </select>
+        </div>
+        <div>
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Tell us what you are looking for" required></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send</button>
+      </form>
+    </article>
+  </section>
 
-		<div class="partner-card">
-			<h3>Partner C</h3>
-			<ul class="partner-contact">
-				<li>Phone: +8801XXXXXXXXX</li>
-				<li>Email: partnerC@example.com</li>
-				<li>WhatsApp: +8801XXXXXXXXX</li>
-				<li><a href="https://facebook.com/partnerC" target="_blank">Facebook</a></li>
-			</ul>
-		</div>
+  <section class="partners" aria-label="Partners">
+    <div class="section-header">
+      <span class="section-label">Our Partners</span>
+      <h2>Trusted Professionals Supporting Your Journey</h2>
+      <p>A collaborative team that helps you secure property with confidence and transparency.</p>
+    </div>
+    <div class="partner-grid">
+      <div class="partner-card">
+        <h3>Anindya Kumar Bhaket</h3>
+        <ul class="partner-contact">
+          <li>Phone: +8801750573487</li>
+          <li>Email: anindyakumarbhaket@gmail.com</li>
+          <li>WhatsApp: +8801XXXXXXXXX</li>
+          <li><a href="https://facebook.com/partnerA" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+      <div class="partner-card">
+        <h3>Partner B</h3>
+        <ul class="partner-contact">
+          <li>Phone: +8801XXXXXXXXX</li>
+          <li>Email: partnerB@example.com</li>
+          <li>WhatsApp: +8801XXXXXXXXX</li>
+          <li><a href="https://facebook.com/partnerB" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+      <div class="partner-card">
+        <h3>Partner C</h3>
+        <ul class="partner-contact">
+          <li>Phone: +8801XXXXXXXXX</li>
+          <li>Email: partnerC@example.com</li>
+          <li>WhatsApp: +8801XXXXXXXXX</li>
+          <li><a href="https://facebook.com/partnerC" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+      <div class="partner-card">
+        <h3>Partner D</h3>
+        <ul class="partner-contact">
+          <li>Phone: +8801XXXXXXXXX</li>
+          <li>Email: partnerD@example.com</li>
+          <li>WhatsApp: +8801XXXXXXXXX</li>
+          <li><a href="https://facebook.com/partnerD" target="_blank">Facebook</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
-		<div class="partner-card">
-			<h3>Partner D</h3>
-			<ul class="partner-contact">
-				<li>Phone: +8801XXXXXXXXX</li>
-				<li>Email: partnerD@example.com</li>
-				<li>WhatsApp: +8801XXXXXXXXX</li>
-				<li><a href="https://facebook.com/partnerD" target="_blank">Facebook</a></li>
-			</ul>
-		</div>
-	</div>
-</section>
-<footer>© Land Finder BD</footer>
+  <footer>© 2026 Land Finder BD — Rajshahi, Bangladesh</footer>
+</div>
 <script src="js/script.js"></script>
 </body>
 </html>
