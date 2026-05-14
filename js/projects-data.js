@@ -41,7 +41,9 @@ const PROJECTS = [
       "Walking distance to Godagari market",
       "All legal paperwork included"
     ],
-    featured: true   // shows in the "Running Projects" preview on the homepage
+    featured: true,   // shows in the "Running Projects" preview on the homepage
+    lat: 24.4667,
+    lng: 88.3333
   },
 
   {
@@ -69,7 +71,9 @@ const PROJECTS = [
       "Near bank & government offices",
       "Title mutation already done"
     ],
-    featured: true
+    featured: true,
+    lat: 24.4700,
+    lng: 88.3400
   },
 
   {
@@ -97,7 +101,9 @@ const PROJECTS = [
       "RAJUK-approved layout",
       "Flexible plot sizes available"
     ],
-    featured: true
+    featured: true,
+    lat: 24.4600,
+    lng: 88.3200
   },
 
   {
@@ -125,6 +131,8 @@ const PROJECTS = [
       "Drainage & sewage system pre-installed",
       "Pre-booking discount available"
     ],
-    featured: false
+    featured: false,
+    lat: 24.4167,
+    lng: 88.6167
   }
 ];
